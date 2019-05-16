@@ -47,7 +47,7 @@ send all headers (Ethernet, IPv4, ...) all to the egress_port.
 I manually set the `ip_protocol` of query packets. If it is a query packet, it will send to `s1-eth3` (connect to `h22`). otherwise 
 it will go to `s1-eth4` (connect to `h2`).
 
-## Step 3: Query packet
+## Query packet
 
 In query packet, I manually set the `ip_protocol` to `63`, and push the real `ip_protocol` to a field in `IP_option`. 
 The count value is also saved in `IP_option`.
