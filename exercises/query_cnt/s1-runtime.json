@@ -1,0 +1,25 @@
+{
+  "target": "bmv2",
+  "p4info": "build/ES_heavy.p4.p4info.txt",
+  "bmv2_json": "build/ES_heavy.json",
+  "table_entries": [
+    {
+      "table": "MyIngress.ipv4_static",
+      "default_action": true,
+      "action_name": "MyIngress.caida_forward",
+      "action_params": {
+         "port": 4
+       }
+    },
+  	{
+      "table": "MyIngress.ipv4_static",
+      "match": {
+        "hdr.ipv4.protocol": 63
+      },
+      "action_name": "MyIngress.query_forward",
+      "action_params": {
+        "port": 3
+      }
+    }
+  ]
+}

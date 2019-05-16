@@ -1,0 +1,14 @@
+{
+    "hosts": [
+        "h1",
+        "h11",
+        "h2",
+        "h22"
+    ],
+    "switches": {
+        "s1": { "runtime_json" : "s1-runtime.json" }
+    },
+    "links": [
+              ["h1", "s1"], ["h2", "s1"], ["h11", "s1"], ["h22", "s1"]
+    ]
+}
