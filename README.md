@@ -1,4 +1,4 @@
-# Implementing MRI
+# Implementing Elastic Sketch with P4
 
 ## Introduction
 
