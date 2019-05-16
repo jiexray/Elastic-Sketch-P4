@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "lasp/ubuntu16.04-desktop"
+  config.vm.define "p4-tutorial" do |tutorial|
+  end
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "P4 Tutorial" + Time.now.strftime(" %Y-%m-%d")
+    vb.gui = true
+    vb.memory = 2048
+    vb.cpus = 2
+    vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+    vb.customize ["storageattach", :id, 
+                "--storagectl", "IDE Controller", 
+                "--port", "0", "--device", "0", 
+                "--type", "dvddrive", 
+                "--medium", "emptydrive"]    
+    vb.customize ["modifyvm", :id, "--vram", "32"]
+
+  end
+  config.vm.synced_folder '.', '/vagrant', disabled: true  
+  config.vm.hostname = "p4"
+  config.vm.provision "file", source: "p4-logo.png",   destination: "/home/vagrant/p4-logo.png"
+  config.vm.provision "file", source: "p4_16-mode.el", destination: "/home/vagrant/p4_16-mode.el"
+  config.vm.provision "file", source: "p4.vim",        destination: "/home/vagrant/p4.vim"
+  config.vm.provision "shell", path: "root-bootstrap.sh"
+  config.vm.provision "shell", privileged: false, path: "user-bootstrap.sh"
+end
